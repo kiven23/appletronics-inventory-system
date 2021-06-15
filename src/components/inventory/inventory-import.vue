@@ -93,8 +93,7 @@ export default {
       fileData.append("file_path", files[0]);
       fileData.append("branch", this.branch.value);
       fileData.append("date", this.proxyDate);
-      axios
-        .post("http://localhost:8000/api/import/inventory", fileData, {
+      instance.post("/import/inventory", fileData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

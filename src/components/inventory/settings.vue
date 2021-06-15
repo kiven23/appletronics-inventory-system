@@ -9,16 +9,17 @@
         indicator-color="primary"
         align="justify"
       >
-        <q-tab name="users" icon="fas fa-user-plus" label="Users" />
+        <q-tab name="users" icon="fas fa-user-plus" label="Users" v-if="hasPermission('Create User')" />
         <q-tab
           name="authorization"
           icon="fas fa-user-cog"
           label="Authorization"
+          v-if="hasPermission('Authorization Access')"
         />
-        <q-tab name="branches" icon="fas fa-code-branch" label="Branches" />
+        <q-tab name="branches" icon="fas fa-code-branch" label="Branches" v-if="hasPermission('Create Branch')"/>
       </q-tabs>
       <q-separator />
-      <q-tab-panels v-model="tab" animated>
+      <q-tab-panels v-model="tab" animated >
         <q-tab-panel name="authorization" class="q-pa-none">
           <q-splitter v-model="splitterModel" style="height: 500px">
             <template v-slot:before>
@@ -982,6 +983,8 @@ const instance = axios.create({
 export default {
   data() {
     return {
+      permissions: [],
+      Authorization: false,
       email: "",
       name: "",
       password: "",
@@ -1639,6 +1642,9 @@ export default {
             this.selectedUsers.length > 1 ? "s" : ""
           } selected of ${this.dataUsers.length}`;
     },
+    hasPermission(val){
+      return  this.permissions.includes(val);
+    },
   },
   mounted() {
     this.renderPermission();
@@ -1647,6 +1653,9 @@ export default {
     this.branches();
     this.renderBranches();
     this.CreateRole_btn();
+    instance.post('/Users/Authorize').then((res)=>{
+     this.permissions = res.data.user_permissions;
+    })
   },
 };
 </script>

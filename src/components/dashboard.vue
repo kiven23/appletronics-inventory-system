@@ -30,7 +30,7 @@
                       <img src="/logo.png" />
                     </q-avatar>
                     <div class="text-subtitle1 q-mt-md q-mb-xs">
-                      Administrator
+                      {{name}}
                     </div>
                     <q-btn
                       color="primary"
@@ -140,13 +140,19 @@
     </q-dialog>
   </div>
 </template>
- 
- 
-
 <script>
+const axios = require("axios");
+const token = localStorage.getItem("user-token");
+const instance = axios.create({
+  baseURL: "http://localhost:8000/api/",
+  headers: {
+    Authorization: "Bearer " + token,
+  },
+});
 export default {
   data() {
     return {
+      name: null,
       inception: false,
       drawer: false,
       miniState: true,
@@ -173,6 +179,9 @@ export default {
 
   mounted() {
     this.checkAuth();
+    instance.post('/Users/Authorize').then((res)=>{
+      this.name = res.data.user.name
+    })
   },
 };
 </script>
