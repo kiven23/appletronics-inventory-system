@@ -1,21 +1,22 @@
+
 <template>
   <div id="q-app">
     <q-layout view="lHh Lpr fff">
       <q-page
-        class="window-height window-width row justify-center items-center"
-        style="background: linear-gradient(#ccebff, #99d6ff)"
+        class="window-height window-width row justify-center items-center  hero-image"
       >
         <div class="column q-pa-md">
           <div class="row">
             <q-card
               square
               class="shadow-24"
-              style="width: 330px; height: 550px"
+              style="width: 330px; height: 400px"
             >
               <q-card-section class="bg-blue-4">
-                <q-item-label class="text-white q-my-md">{{
-                  title
-                }}</q-item-label>
+                <q-item-label class="text-white q-my-md">
+                  Addessa MessageCast
+                  <!-- <img src="nav.jpg" style="width: 300px; height: 70px" /> -->
+                </q-item-label>
               </q-card-section>
               <q-card-section>
                 <!-- <q-fab
@@ -120,20 +121,26 @@
                 />
                
               </q-card-actions>
-               
+              
             </q-card>
+            
           </div>
         </div>
+   
+
       </q-page>
+    <div id="footer">
+                  © Copyright 2021 MessageCast | Stevefox_Linux 
+    </div>
     </q-layout>
+    
   </div>
 </template>
  <script>
 import axios from "axios";
- 
 const token = localStorage.getItem("user-token");
 const instance = axios.create({
-  baseURL: "http://localhost:8000/api/",
+  baseURL: "http://127.0.0.1:8000/api/",
   headers: {
     Authorization: "Bearer " + token,
   },
@@ -142,7 +149,7 @@ const instance = axios.create({
 export default {
   data() {
     return {
-      title: "Login",
+      title: "Appletronics Portal",
       email: "",
       name: "",
       password: "",
@@ -268,4 +275,23 @@ export default {
  
 };
 </script>
+ <style>
+  .hero-image {
+    background-image: url("https://appletronics.webportal.ac/login.jpg");
+ 
+    background-color: #cccccc;
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  #footer {
+    position: absolute;
+    bottom: 0px;
+    background-color: #80ccff;
+    width: 100%;
+    text-align: center;
+}
+ </style>
  

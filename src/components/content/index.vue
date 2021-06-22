@@ -1,5 +1,5 @@
 <template>
-     <div>
+     <div  >
          <h1>DashBoard</h1>
      </div>
 </template>
@@ -19,3 +19,4 @@ export default {
 };
  
 </script>
+ 

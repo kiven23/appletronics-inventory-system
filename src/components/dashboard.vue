@@ -1,12 +1,10 @@
-<template>
-  <div class="q-pa-md bg-blue-1">
+<template >
+  <div class="q-pa-md hero-image">
     <q-layout view="hHh Lpr lff">
       <q-header elevated style="background: linear-gradient(#4db8ff, #005c99)">
         <q-toolbar>
           <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-
-          <q-toolbar-title>Portal</q-toolbar-title>
-
+          <q-toolbar-title>WebPortal</q-toolbar-title>
           <div class="text-h4">
             <q-btn class="glossy" color="teal" dense icon="menu">
               <q-menu>
@@ -22,12 +20,10 @@
                       @click="about()"
                     />
                   </div>
-
-                  <q-separator vertical inset class="q-mx-lg" />
-
+                  <q-separator vertical inset class="q-mx-lg"/>
                   <div class="column items-center">
                     <q-avatar size="72px">
-                      <img src="/logo.png" />
+                      <img src="/logo.svg" />
                     </q-avatar>
                     <div class="text-subtitle1 q-mt-md q-mb-xs">
                       {{name}}
@@ -55,24 +51,31 @@
         :width="200"
         :breakpoint="500"
         bordered
-        content-class="bg-grey-3"
+        content-class="bg-blue-3"
       >
         <q-scroll-area class="fit">
           <q-list padding>
-            <!-- <q-item clickable v-ripple to="/">
+            <!--<q-item clickable v-ripple to="/">
               <q-item-section avatar>
                 <q-icon name="dashboard" />
               </q-item-section>
-
               <q-item-section> Dashboard </q-item-section>
             </q-item> -->
 
-            <q-item clickable v-ripple to="/inventory">
+            <q-item clickable v-ripple to="/messagecast/marketing/index">
               <q-item-section avatar>
-                <q-icon name="fas fa-file-import" />
+                <q-icon name="fas fa-sms" />
   
               </q-item-section>
-                 <q-item-section> Inventory </q-item-section>
+                 <q-item-section> Message Cast Marketing </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple to="/messagecast/branch/index">
+              <q-item-section avatar>
+                <q-icon name="fas fa-comment-alt" />
+  
+              </q-item-section>
+                 <q-item-section> Message Cast Branch </q-item-section>
             </q-item>
 
             <!-- <q-item clickable v-ripple to="/users">
@@ -88,7 +91,7 @@
                 <q-icon name="fas fa-cogs" />
               </q-item-section>
 
-              <q-item-section> Branches </q-item-section>
+              <q-item-section> Settings </q-item-section>
             </q-item>
           </q-list>
         </q-scroll-area>
@@ -114,9 +117,8 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          Trainees Examination System <br />
-          This system system is used to identify the performance of trainees,
-          for every branch training
+          Webportal <br />
+          web base application
         </q-card-section>
         <q-card-section class="q-pt-none">
           System info<br />
@@ -132,19 +134,21 @@
           Web Developer<br />
           @stevefox_linux
         </q-card-section>
-
         <q-card-actions align="right" class="text-primary">
           <q-btn flat label="Close" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
+        <div id="footer">
+            © Copyright 2021 Appletronics | Stevefox_Linux 
+        </div>
   </div>
 </template>
 <script>
 const axios = require("axios");
 const token = localStorage.getItem("user-token");
 const instance = axios.create({
-  baseURL: "http://localhost:8000/api/",
+  baseURL: "http://127.0.0.1:8000/api/",
   headers: {
     Authorization: "Bearer " + token,
   },
@@ -160,7 +164,6 @@ export default {
       invnty:  false,
     };
   },
-
   methods: {
     logout() {
       localStorage.removeItem("user-token");
@@ -176,7 +179,6 @@ export default {
       this.invnty = true;
     },
   },
-
   mounted() {
     this.checkAuth();
     instance.post('/Users/Authorize').then((res)=>{
@@ -185,3 +187,22 @@ export default {
   },
 };
 </script>
+  <style>
+  .hero-image {
+    background-image: url("https://appletronics.webportal.ac/login.jpg");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  #footer {
+    position: absolute;
+    bottom: 0px;
+    background-color: #80ccff;
+    width: 99%;
+    text-align: center;
+}
+ </style>
+ 

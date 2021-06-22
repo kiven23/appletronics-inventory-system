@@ -2,15 +2,13 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import login from './components/Auth/login.vue'
 import dashview from './components/dashboard.vue'
-import landing from './components/content/index.vue'
+ 
 
-import recon from './components/inventory/inventory.vue'
+ 
 import branches from './components/branches/create-branch.vue'
-import users from './components/users/create-users.vue'
-import inventory_import from './components/inventory/inventory-import.vue'
-import inventory_info from './components/inventory/inventory-info.vue'
-import inventory_recon from './components/inventory/inventory-recon.vue'
-import settings from './components/inventory/settings.vue'
+import settings from './components/messagecast/settings.vue'
+import marketing from './components/messagecast/marketing.vue'
+import branch from './components/messagecast/branch.vue'
 Vue.use(Router)
 const routes = [
     {
@@ -26,34 +24,12 @@ const routes = [
         },
         children: [
             {
-                path: '/inventory',
-                component: recon,
+                path: '/messagecast/marketing/index',
+                component: marketing,
             },
             {
-                path: '/inventory/import',
-                component: inventory_import,
-            },
-            {
-                path: '/users',
-                component: users,
-            },
-            {
-                path: '/branches',
-                component: branches,
-            },
-            {
-                path: '/',
-                component: recon,
-            },
-            {
-                path: '/inventory/view/:branch/:asof',
-                name: 'inventory_info',
-                component: inventory_info,
-            },
-            {
-                path: '/inventory/recon/:branch/:asof',
-                name: 'inventory_recon',
-                component: inventory_recon,
+                path: '/messagecast/branch/index',
+                component: branch,
             },
             {
                 path: '/settings',
